@@ -1,0 +1,29 @@
+{
+  "name": "qingcaolake",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "青草湖旅遊指南 — 獨立遊客指南",
+  "scripts": {
+    "dev": "astro dev",
+    "dev:cloudflare": "pnpm build && wrangler pages dev dist",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.1.0",
+    "sharp": "^0.33.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
+  },
+  "devDependencies": {
+    "wrangler": "^4.112.0"
+  }
+}
