@@ -1,0 +1,61 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import SourceList from '../components/SourceList.astro';
+import { PARKING } from '../data/facts';
+import { GOOGLE_MAPS } from '../data/site';
+---
+<ContentPage
+  title="青草湖停車場指南｜66 個車位、每小時 30 元、24 小時營運"
+  h1="青草湖停車場完整指南"
+  description="青草湖停車位置、費用與替代方案。官方停車場位於明湖路 1075 巷 101 號，66 個汽車位、每小時 30 元、24 小時營運。"
+  path="/parking/"
+  ogImage="lake2022i"
+  intro="開車來青草湖，停車其實不難。官方停車場就在湖區旁，走到映月橋只要幾分鐘。以下整理位置、收費與假日備案。"
+  crumbs={[{ label: '交通停車', href: '/transport/' }, { label: '停車場指南', href: '/parking/' }]}
+>
+  <div class="tldr">
+    <b>30 秒結論</b>
+    <ul>
+      <li>青草湖停車場：{PARKING.spaces}、{PARKING.fee}、{PARKING.hours}。</li>
+      <li>地址：{PARKING.address}，停車場到映月橋步行約 5—8 分鐘。</li>
+      <li>假日中午較滿，建議早上或傍晚來，或停機車前往。</li>
+    </ul>
+  </div>
+
+  <h2>目前停車資訊</h2>
+  <div class="info-card">
+    <dl>
+      <dt>名稱</dt><dd>{PARKING.name}</dd>
+      <dt>地址</dt><dd>{PARKING.address}</dd>
+      <dt>車位</dt><dd>{PARKING.spaces}</dd>
+      <dt>時間</dt><dd>{PARKING.hours}</dd>
+      <dt>費用</dt><dd>{PARKING.fee} <span class="badge badge--variable">可能變動</span></dd>
+    </dl>
+  </div>
+  <div class="callout">停車費與車位數請以現場告示為準。</div>
+
+  <h2>實際怎麼使用</h2>
+  <ul>
+    <li>可直接開啟 <a href={GOOGLE_MAPS.placeUrl} rel="noopener" target="_blank">Google Maps 青草湖正確地標</a>導航。</li>
+    <li>停好車後往水域遊憩中心方向走，即接上環湖步道與映月橋。</li>
+    <li>採計時收費，短暫停留成本低；久留野餐則要留意累計時數。</li>
+  </ul>
+
+  <h2>容易出錯的地方</h2>
+  <ul>
+    <li>假日中午常客滿，臨停繞湖找位反而更花時間。</li>
+    <li>巷道較窄，會車請放慢；接送幼兒與長者請靠邊短停。</li>
+  </ul>
+
+  <h2>替代方案</h2>
+  <ul>
+    <li><strong>騎機車：</strong>湖區周邊有機車停放空間，假日更靈活。</li>
+    <li><strong>大眾運輸：</strong>可搭公車或轉乘，詳見<a href="/transport/">交通方式</a>。</li>
+    <li><strong>YouBike：</strong>從新竹市區騎乘結合環湖，適合天氣好的日子。</li>
+  </ul>
+
+  <h2>適合哪些人</h2>
+  <p>自駕的親子家庭與長者最方便，車程短、下車即達步道。若只是想散步一小時，計時停車很划算。</p>
+
+  <SourceList keys={['hsinchu-city-parking', 'hsinchu-tourism-lake']} />
+</ContentPage>

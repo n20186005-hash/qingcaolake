@@ -1,0 +1,53 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import SourceList from '../components/SourceList.astro';
+import { GOOGLE_MAPS } from '../data/site';
+---
+<ContentPage
+  title="青草湖怎麼去｜開車、公車、YouBike 交通全攻略"
+  h1="青草湖交通：開車、公車、YouBike 怎麼去"
+  description="從新竹火車站到青草湖的交通方式：自行開車、公車路線、YouBike 與計程車。含停車、路程時間與建議。"
+  path="/transport/"
+  ogImage="trees"
+  intro="青草湖就在新竹市區旁，交通不複雜。開車最方便，也可搭公車或騎 YouBike。以下依交通方式分別說明。"
+  crumbs={[{ label: '交通停車', href: '/transport/' }]}
+>
+  <div class="tldr">
+    <b>30 秒結論</b>
+    <ul>
+      <li>開車：從新竹火車站約 15—20 分鐘，湖區旁有官方停車場。</li>
+      <li>公車：可搭往青草湖方向路線，於湖區附近站牌下車。</li>
+      <li>YouBike／單車：適合天氣好時從市區沿路騎乘。</li>
+    </ul>
+  </div>
+
+  <h2>開車</h2>
+  <p>
+    使用 <a href={GOOGLE_MAPS.placeUrl} rel="noopener" target="_blank">Google Maps 青草湖正確地標</a>導航。從新竹火車站出發約 15—20 分鐘，
+    沿明湖路即可抵達。停車費、車位與備案詳見<a href="/parking/">停車場指南</a>。
+  </p>
+
+  <h2>公車</h2>
+  <p>
+    青草湖鄰近有公車站牌，可從新竹火車站一帶搭乘往青草湖方向的市區公車，於湖區附近站下車步行進入。
+    班次與路線會調整，出發前建議以「新竹市公車」或大眾運輸 App 查詢即時到站。
+  </p>
+  <div class="callout"><span class="badge badge--variable">可能變動</span> 公車路線與班次每季可能異動，請以客運業者最新公告為準。</div>
+
+  <h2>台鐵 + 轉乘</h2>
+  <p>
+    外縣市遊客可搭台鐵至<strong>新竹站</strong>，再轉公車、計程車或 YouBike 前往青草湖。
+    官方英文旅遊頁面也將鄰近公車站、台鐵新竹站與周邊 YouBike 站點列為到訪方式。
+  </p>
+
+  <h2>YouBike 與單車</h2>
+  <p>
+    喜歡騎行的人，可從新竹市區的 YouBike 站點取車，沿路騎往青草湖，抵達後結合環湖散步。
+    路程有起伏，夏日請注意補水與防曬。環湖步道細節見<a href="/trail/">環湖步道攻略</a>。
+  </p>
+
+  <h2>計程車</h2>
+  <p>從新竹火車站搭計程車前往，車程短、適合帶長者或行李較多時；回程可請店家或現場協助叫車。</p>
+
+  <SourceList keys={['taiwan-tourism-eng', 'hsinchu-tourism-lake']} />
+</ContentPage>

@@ -1,0 +1,31 @@
+---
+import type { FaqItem } from '../data/faq';
+
+interface Props {
+  items: FaqItem[];
+  heading?: string;
+  /** 是否輸出 FAQPage schema（每頁只應有一組） */
+  schema?: boolean;
+}
+const { items, heading, schema = true } = Astro.props;
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
+---
+<div class="faq">
+  {heading && <h2>{heading}</h2>}
+  {items.map((it) => (
+    <details>
+      <summary>{it.q}</summary>
+      <p>{it.a}</p>
+    </details>
+  ))}
+</div>
+{schema && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} is:inline />}

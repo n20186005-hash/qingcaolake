@@ -1,0 +1,40 @@
+---
+import Base from './Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import PageGallery from '../components/PageGallery.astro';
+import type { IMAGES } from '../data/images';
+import { PAGE_GALLERIES } from '../data/page-galleries';
+
+interface Crumb { label: string; href?: string; }
+
+interface Props {
+  title: string; // <title> 用
+  h1: string; // 頁面主標
+  description: string;
+  path: string;
+  crumbs: Crumb[];
+  ogImage?: keyof typeof IMAGES;
+  jsonld?: object[];
+  intro?: string; // 30 秒結論 / 導言
+}
+
+const { title, h1, description, path, crumbs, ogImage, jsonld, intro } = Astro.props;
+const gallery = PAGE_GALLERIES[path];
+---
+<Base title={title} description={description} path={path} ogImage={ogImage} type="article" jsonld={jsonld}>
+  <Breadcrumbs items={crumbs} />
+  <article class="container">
+    <header class="prose" style="margin-top:1.2em">
+      <h1>{h1}</h1>
+      {intro && <p class="lead">{intro}</p>}
+    </header>
+    {gallery && (
+      <div class="prose">
+        <PageGallery {...gallery} />
+      </div>
+    )}
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</Base>

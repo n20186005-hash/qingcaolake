@@ -1,0 +1,62 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import Photo from '../components/Photo.astro';
+import SourceList from '../components/SourceList.astro';
+---
+<ContentPage
+  title="第一次來青草湖攻略｜怎麼玩、要多久、好玩嗎？"
+  h1="第一次來青草湖：怎麼玩、要多久、好不好玩"
+  description="第一次到新竹青草湖的完整攻略：停車、環湖時間、適合誰、必看地標與最容易踩到的雷，一次看懂。"
+  path="/guide/"
+  ogImage="panorama"
+  intro="青草湖是新竹市區旁最容易親近的湖泊景點。免門票、全日開放、環湖一圈約 1.5 小時。這篇幫你判斷值不值得來、要留多少時間，以及第一次來最該注意什麼。"
+  crumbs={[{ label: '第一次來', href: '/guide/' }]}
+>
+  <div class="tldr">
+    <b>30 秒結論</b>
+    <ul>
+      <li>青草湖，又稱 Qingcao Lake、Green Grass Lake，位於新竹市東區，公共湖區免費、全日開放。</li>
+      <li>只想散步拍照：抓 1 小時走映月橋、於飛島精華段就夠。</li>
+      <li>想完整環湖：約 2 小時、3 公里；帶孩子坐船：抓半天。</li>
+      <li>水上活動另有營業時間、固定星期二休息，出發前要再確認。</li>
+    </ul>
+  </div>
+
+  <QuickFacts />
+
+  <h2>青草湖好玩嗎？先說實話</h2>
+  <p>
+    青草湖的規模不大，單純散步通常不需要一整天。它的價值在於「離市區近、好停車、動線單純、老少咸宜」——
+    很適合半日的親水行程，而不是需要專程久留的大型景區。若你期待壯闊山水，可能會覺得普通；
+    若你想要一個輕鬆、順路、能拍到映月橋倒影的下午，這裡很合適。
+  </p>
+  <p>
+    另外要先有心理準備：湖水顏色會隨天氣與季節變化，陰天時較不上相；假日停車位可能較緊張；
+    部分環湖路段會靠近車道，帶孩子時要留意。誠實說出這些限制，是希望你到現場不會失望。
+  </p>
+
+  <Photo name="view" caption="青草湖湖岸與倒影，晴天午後最適合散步" />
+
+  <h2>青草湖適合哪些人？</h2>
+  <ul>
+    <li><strong>親子家庭：</strong>明湖公園腹地大、可放電，搭配天鵝船互動性高；映月橋一帶推車好走。</li>
+    <li><strong>情侶與攝影：</strong>映月橋倒影、於飛島與夕陽是招牌畫面，一小時就能拍到重點。</li>
+    <li><strong>長者與輕旅行：</strong>可只走映月橋到於飛島的平緩段，不必勉強完整環湖。</li>
+  </ul>
+
+  <h2>第一次來的建議動線</h2>
+  <p>從青草湖停車場出發，先到水域遊憩中心，接著走映月橋、於飛島，這段最平緩、最好拍。
+    時間足夠再往鳳凰橋、明湖公園延伸，回程可順遊靈隱寺登高看湖景。完整地圖與步行時間見
+    <a href="/map/">環湖導覽地圖</a>，路線細節見<a href="/routes/half-day/">遊玩路線</a>。</p>
+
+  <h2>最容易踩到的雷</h2>
+  <ul>
+    <li>把「星期二休息」誤以為整個湖區關閉——其實只有水上活動休息，散步照常。</li>
+    <li>假日中午才到，停車場已滿——建議早上或傍晚前往。</li>
+    <li>沒先看天氣就想坐船——雨天、水位或維護都可能停開。</li>
+    <li>帶未滿 3 歲幼兒想搭船——目前造型踩踏船與電動船不開放未滿 3 歲搭乘。</li>
+  </ul>
+
+  <SourceList keys={['hsinchu-tourism-lake', 'hsinchu-tourism-water', 'hsinchu-city-parking']} />
+</ContentPage>

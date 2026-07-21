@@ -1,0 +1,33 @@
+---
+import { Picture } from 'astro:assets';
+import { IMAGES } from '../data/images';
+import type { Route } from '../data/routes';
+
+interface Props { route: Route; }
+const { route } = Astro.props;
+const img = IMAGES[route.image];
+---
+<article class="route" id={route.href.split('#')[1]}>
+  <div class="route__media">
+    <Picture
+      src={img.src}
+      formats={['avif', 'webp']}
+      widths={[500, 900]}
+      sizes="(max-width: 860px) 100vw, 340px"
+      alt={img.alt}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="route__body">
+    <h3>{route.name}</h3>
+    <div class="route__tags">
+      <span class="chip chip--lake">{route.duration}</span>
+      <span class="chip">步行 {route.walk}</span>
+    </div>
+    <p style="color:var(--muted);margin:.2em 0 1em;font-size:.92rem">適合：{route.audience}</p>
+    <ol class="route__steps">
+      {route.steps.map((s) => <li>{s}</li>)}
+    </ol>
+  </div>
+</article>

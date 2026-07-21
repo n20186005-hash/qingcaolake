@@ -1,0 +1,40 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import { SITE } from '../data/site';
+---
+<ContentPage
+  title="關於青草湖旅遊指南｜獨立、非官方的遊客資訊網站"
+  h1="關於本站"
+  description="青草湖旅遊指南是獨立經營的遊客資訊網站，專注新竹青草湖的出發前決策：交通、停車、環湖、水上活動與路線。"
+  path="/about/"
+  ogImage="hero"
+  intro="我們只做一件事：把「新竹青草湖」這一個景點的出發前決策，做到最完整、最實用。"
+  crumbs={[{ label: '關於我們', href: '/about/' }]}
+>
+  <h2>我們是誰</h2>
+  <p>
+    {SITE.name}（{SITE.nameEn}）是一個獨立經營的旅遊資訊網站，專注整理新竹青草湖的交通、停車、
+    環湖步道、水上活動與遊玩路線。我們不重複官方景點介紹，而是解決遊客出發前的實際問題：
+    怎麼去、停哪裡、走多久、適合誰、玩完還能去哪。
+  </p>
+
+  <h2>我們的編輯原則</h2>
+  <ul>
+    <li><strong>區分穩定與易變資訊：</strong>歷史、地標、路線屬穩定資料；停車費、活動價格、營業時間屬易變資料，會標註來源與變動提醒。</li>
+    <li><strong>誠實說出缺點：</strong>景點規模、水色、假日車位、鄰近車道等限制都會如實說明。</li>
+    <li><strong>不製造假資料：</strong>不使用虛構評分與評論數，也不把本站設為青草湖經營者。</li>
+    <li><strong>尊重授權：</strong>站上照片來自 Wikimedia Commons 姓名標示授權作品，並於各頁標註原作者與授權。</li>
+  </ul>
+
+  <h2>聯絡與勘誤</h2>
+  <p>
+    發現停車費、營業時間或設施有變動，歡迎來信協助勘誤，一起讓資訊更準確：
+  </p>
+  <ul>
+    <li>一般聯絡：<a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+    <li>內容編輯：<a href={`mailto:${SITE.editorEmail}`}>{SITE.editorEmail}</a></li>
+    <li>資料勘誤：<a href={`mailto:${SITE.correctionsEmail}`}>{SITE.correctionsEmail}</a></li>
+  </ul>
+
+  <p style="margin-top:2em"><a href="/sources/">查看資料來源與核驗機制 ›</a></p>
+</ContentPage>

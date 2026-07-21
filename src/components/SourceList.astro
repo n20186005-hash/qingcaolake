@@ -1,0 +1,27 @@
+---
+import { SOURCES, type SourceKey } from '../data/site';
+
+interface Props {
+  keys: SourceKey[];
+  title?: string;
+  note?: string;
+}
+const {
+  keys,
+  title = '官方資料來源',
+  note = '價格、營業時間與臨時管制以上述單位最新公告為準；本站僅整理資訊，不代收費用、不處理預約與退款。',
+} = Astro.props;
+---
+<div class="source-block">
+  <h2>{title}</h2>
+  <ul class="sources">
+    {keys.map((k) => (
+      <li>
+        <a href={SOURCES[k].url} rel="nofollow noopener" target="_blank">
+          {SOURCES[k].label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <p style="font-size:.85rem;color:var(--muted)">{note}</p>
+</div>

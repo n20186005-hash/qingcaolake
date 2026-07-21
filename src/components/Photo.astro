@@ -1,0 +1,58 @@
+---
+import { Picture } from 'astro:assets';
+import { IMAGES, type ImageKey } from '../data/images';
+
+interface Props {
+  name: ImageKey;
+  /** 覆寫 alt（否則用圖庫預設） */
+  alt?: string;
+  widths?: number[];
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'auto';
+  class?: string;
+  /** 是否在圖片下方顯示攝影者標示 */
+  caption?: string;
+  showCredit?: boolean;
+}
+
+const {
+  name,
+  alt,
+  widths = [480, 800, 1200, 1600],
+  sizes = '(max-width: 760px) 100vw, 760px',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  class: className,
+  caption,
+  showCredit = true,
+} = Astro.props;
+
+const img = IMAGES[name];
+const responsiveWidths = widths.filter((width) => width <= img.src.width);
+if (responsiveWidths.length === 0) responsiveWidths.push(img.src.width);
+---
+<figure class:list={['photo', img.display === 'panorama' && 'photo--panorama', className]}>
+  <Picture
+    src={img.src}
+    formats={['avif', 'webp']}
+    widths={responsiveWidths}
+    sizes={sizes}
+    alt={alt ?? img.alt}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+  />
+  {(caption || showCredit) && (
+    <figcaption>
+      {caption}
+      {caption && showCredit && ' · '}
+      {showCredit && (
+        <span class="figure-credit">
+          攝影：<a href={img.source} rel="nofollow noopener" target="_blank">{img.credit}</a>
+          （{img.license}）
+        </span>
+      )}
+    </figcaption>
+  )}
+</figure>

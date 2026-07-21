@@ -1,0 +1,35 @@
+---
+import { Picture } from 'astro:assets';
+import { IMAGES } from '../data/images';
+import type { Attraction } from '../data/places';
+
+interface Props { a: Attraction; href?: string; }
+const { a, href = a.href } = Astro.props;
+const img = IMAGES[a.image];
+---
+<a class="card" href={href}>
+  <div class="card__media">
+    <Picture
+      src={img.src}
+      formats={['avif', 'webp']}
+      widths={[400, 700]}
+      sizes="(max-width: 560px) 100vw, 350px"
+      alt={img.alt}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="card__body">
+    <div class="card__title">
+      {a.name}
+      {a.nameEn && <small>{a.nameEn}</small>}
+    </div>
+    <p class="card__feature">{a.feature}</p>
+    <div class="card__meta">
+      <span>建議停留：{a.stay}</span>
+      <span>{a.nextStop}</span>
+      <span>{a.friendly}</span>
+    </div>
+    <span class="card__more">查看詳情 ›</span>
+  </div>
+</a>

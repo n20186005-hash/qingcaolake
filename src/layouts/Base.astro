@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { IMAGES } from '../data/images';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: keyof typeof IMAGES;
+  type?: 'website' | 'article';
+  jsonld?: object[];
+  noindex?: boolean;
+}
+
+const props = Astro.props;
+---
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <BaseHead {...props} />
+  </head>
+  <body>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

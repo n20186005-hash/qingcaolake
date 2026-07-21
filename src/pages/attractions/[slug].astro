@@ -1,0 +1,111 @@
+---
+import ContentPage from '../../layouts/ContentPage.astro';
+import Photo from '../../components/Photo.astro';
+import SourceList from '../../components/SourceList.astro';
+import { IMAGES } from '../../data/images';
+import { ATTRACTION_PAGES, type Attraction } from '../../data/places';
+import { SITE } from '../../data/site';
+
+export function getStaticPaths() {
+  return ATTRACTION_PAGES.map((place) => ({
+    params: { slug: place.slug },
+    props: { place },
+  }));
+}
+
+interface Props {
+  place: Attraction;
+}
+
+const { place } = Astro.props;
+const title = `${place.name}｜位置、步行方式、拍照與停留建議`;
+const description = `${place.name}（${place.nameEn ?? place.name}）導覽：${place.feature}。含位置、從停車場怎麼走、建議停留、拍攝視角、行動友善資訊與下一站。`;
+
+const placeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristAttraction',
+  name: place.name,
+  alternateName: place.nameEn,
+  description: place.summary,
+  url: new URL(place.href, SITE.url).href,
+  containedInPlace: {
+    '@type': 'Place',
+    name: '青草湖',
+    alternateName: ['Qingcao Lake', 'Green Grass Lake'],
+  },
+};
+---
+<ContentPage
+  title={title}
+  h1={`${place.name}${place.nameEn ? ` ${place.nameEn}` : ''}`}
+  description={description}
+  path={place.href}
+  ogImage={place.image}
+  intro={place.summary}
+  crumbs={[
+    { label: '景點導覽', href: '/#attractions' },
+    { label: place.name, href: place.href },
+  ]}
+  jsonld={[placeSchema]}
+>
+  <Photo
+    name={place.image}
+    loading="eager"
+    fetchpriority="high"
+    caption={`${place.name}：${place.feature}`}
+  />
+
+  <dl class="attraction-facts" aria-label={`${place.name}快速資訊`}>
+    <div><dt>建議停留</dt><dd>{place.stay}</dd></div>
+    <div><dt>從停車場出發</dt><dd>{place.fromParking}</dd></div>
+    <div><dt>適合對象</dt><dd>{place.friendly}</dd></div>
+    <div><dt>下一站</dt><dd>{place.next.name} · {place.next.walking}</dd></div>
+  </dl>
+
+  <h2>{place.name}在哪裡？</h2>
+  <p>{place.location}</p>
+  <div class="callout">
+    <strong>從青草湖停車場出發：</strong>{place.fromParking}
+    實際動線仍請以現場指標與<a href="/map/">青草湖導覽地圖</a>為準。
+  </div>
+
+  <h2>最佳拍攝方式</h2>
+  <p>{place.photoTip}</p>
+
+  <h2>推嬰兒車、長者與行動提醒</h2>
+  <p>{place.accessibility}</p>
+
+  <h2>實景照片</h2>
+  <div class="photo-gallery">
+    {place.gallery.map((imageName, index) => (
+      <Photo
+        name={imageName}
+        caption={IMAGES[imageName].alt}
+        widths={[480, 800, 1200, 1600]}
+        sizes={index === 0
+          ? '(max-width: 760px) 100vw, 760px'
+          : '(max-width: 640px) 100vw, 360px'}
+      />
+    ))}
+  </div>
+
+  <h2>地標背景</h2>
+  <p>{place.history}</p>
+
+  <h2>到訪前要知道的事</h2>
+  <ul>
+    {place.tips.map((tip) => <li>{tip}</li>)}
+  </ul>
+
+  <div class="next-place">
+    <span>建議下一站</span>
+    <strong>{place.next.name}</strong>
+    <small>{place.next.walking}</small>
+    <a class="btn btn--ghost" href={place.next.href}>繼續規劃 ›</a>
+  </div>
+
+  <SourceList
+    keys={place.sourceKeys}
+    note="景點位置、步道與現場開放狀況可能因工程或管制調整，出發前請參考最新公告與現場指標。"
+  />
+</ContentPage>

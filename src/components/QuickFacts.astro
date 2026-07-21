@@ -1,0 +1,14 @@
+---
+import { QUICK_FACTS } from '../data/facts';
+---
+<dl class="facts">
+  {QUICK_FACTS.map((f) => (
+    <div class="fact">
+      <dt>{f.label}</dt>
+      <dd>{f.value}{f.note && <small>{f.note}</small>}</dd>
+    </div>
+  ))}
+</dl>
+<p class="facts-note">
+  停車費與車位數請以現場告示為準；水上活動可能因天候、水位或維護暫停。
+</p>

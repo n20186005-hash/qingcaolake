@@ -1,0 +1,53 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import SourceList from '../components/SourceList.astro';
+import { IMAGES } from '../data/images';
+---
+<ContentPage
+  title="資料來源與核驗機制｜青草湖旅遊指南"
+  h1="資料來源與核驗機制"
+  description="青草湖旅遊指南的資料來源、核驗頻率與圖片授權說明。資料以官方單位公告為主。"
+  path="/sources/"
+  ogImage="old"
+  intro="這裡公開我們的資料來源、核驗頻率與圖片授權，讓你判斷資訊的可信度。"
+  crumbs={[{ label: '資料來源', href: '/sources/' }]}
+>
+  <SourceList keys={['hsinchu-tourism-lake', 'hsinchu-tourism-water', 'hsinchu-city-parking', 'hsinchu-city-marketing', 'taiwan-tourism-eng']} title="主要官方來源" />
+
+  <h2>來源優先順序</h2>
+  <ol>
+    <li>新竹市政府（觀光、交通主管單位）</li>
+    <li>青草湖水域遊憩活動經營單位</li>
+    <li>交通部觀光署等觀光主管機關</li>
+    <li>現場告示</li>
+    <li>實際走訪</li>
+    <li>其他旅遊平台（僅作補充，不作為價格與時間依據）</li>
+  </ol>
+
+  <h2>核驗頻率</h2>
+  <div class="table-wrap">
+    <table class="data">
+      <thead><tr><th>資訊類型</th><th>核驗頻率</th></tr></thead>
+      <tbody>
+        <tr><td>停車費</td><td>每 3 個月</td></tr>
+        <tr><td>水上活動價格</td><td>每 2—3 個月</td></tr>
+        <tr><td>水域營業時間</td><td>每季</td></tr>
+        <tr><td>公車路線</td><td>每 3 個月</td></tr>
+        <tr><td>景點歷史</td><td>每年檢查</td></tr>
+        <tr><td>路線與地圖</td><td>有施工或封閉時更新</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>圖片授權</h2>
+  <p>本站照片均為 Wikimedia Commons 之姓名標示（CC BY / CC BY-SA）授權作品，原作者與授權如下：</p>
+  <ul>
+    {Object.values(IMAGES).map((img) => (
+      <li>
+        <a href={img.source} rel="nofollow noopener" target="_blank">{img.alt}</a>
+        — {img.credit}（{img.license}）
+      </li>
+    ))}
+  </ul>
+
+</ContentPage>

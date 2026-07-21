@@ -1,0 +1,68 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import LakeMap from '../components/LakeMap.astro';
+import { GOOGLE_MAPS } from '../data/site';
+---
+<ContentPage
+  title="青草湖地圖｜環湖步道與景點導覽圖"
+  h1="青草湖導覽地圖與環湖步道圖"
+  description="自製青草湖導覽地圖，標出停車場、水域遊憩中心、廁所、映月橋、於飛島、鳳凰橋、靈隱寺、明湖公園與三條推薦環湖路線。"
+  path="/map/"
+  ogImage="panorama"
+  intro="這張是本站自行繪製的青草湖導覽示意地圖，重點在幫你看懂各地標的相對位置與動線，不是等比例的官方測繪圖。導航請以地圖 App 為準。"
+  crumbs={[{ label: '環湖地圖', href: '/map/' }]}
+>
+  <LakeMap />
+
+  <h2>Google Maps 實際位置</h2>
+  <p>以下是 Green Grass Lake（青草湖）的正確地標，可放大查看或直接開啟導航。</p>
+  <div class="google-map-embed">
+    <iframe
+      src={GOOGLE_MAPS.embedUrl}
+      width="600"
+      height="450"
+      style="border:0;"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      title="Green Grass Lake 青草湖 Google Maps 地圖"
+    ></iframe>
+  </div>
+  <p class="mt-lg">
+    <a class="btn" href={GOOGLE_MAPS.placeUrl} rel="noopener" target="_blank">在 Google Maps 開啟青草湖</a>
+  </p>
+
+  <h2>各站步行時間參考</h2>
+  <div class="table-wrap">
+    <table class="data">
+      <thead><tr><th>路段</th><th>步行時間</th><th>路況</th></tr></thead>
+      <tbody>
+        <tr><td><a href="/parking/">停車場</a> → <a href="/water-activities/">水域遊憩中心</a></td><td>約 3 分鐘</td><td>平緩，推車可行</td></tr>
+        <tr><td>水域中心 → <a href="/attractions/yingyue-bridge/">映月橋</a></td><td>約 3 分鐘</td><td>平緩，湖岸視野好</td></tr>
+        <tr><td>映月橋 → <a href="/attractions/yufei-island/">於飛島</a></td><td>約 3 分鐘</td><td>平緩，最好拍</td></tr>
+        <tr><td>於飛島 → <a href="/attractions/fenghuang-bridge/">鳳凰橋</a></td><td>約 8 分鐘</td><td>略有坡度</td></tr>
+        <tr><td>鳳凰橋 → <a href="/attractions/minghu-park/">明湖公園</a></td><td>約 10 分鐘</td><td>開闊綠地</td></tr>
+        <tr><td>湖區 → <a href="/attractions/lingyin-temple/">靈隱寺</a></td><td>約 10—12 分鐘</td><td>入口有階梯</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted)">步行時間為悠閒步調估計，含短暫停留；實際依個人腳程與現場狀況調整。</p>
+
+  <h2>怎麼使用這張地圖</h2>
+  <ul>
+    <li><strong>推車與長者：</strong>優先走停車場—水域中心—映月橋—於飛島這段平緩路線。</li>
+    <li><strong>攝影：</strong>映月橋與於飛島之間是倒影與夕陽的最佳角度。</li>
+    <li><strong>靠近車道路段：</strong>往鳳凰橋、明湖公園方向部分路段鄰近道路，帶孩子請牽好。</li>
+  </ul>
+
+  <p>
+    想補充水利歷史，可從鳳凰橋附近依現場指標上坡前往
+    <a href="/attractions/memorial/">青草湖風景紀念碑</a>；這段有坡度，不列入親子與長者的精華路線。
+  </p>
+
+  <div class="callout">
+    本地圖為示意用途，未依實際比例繪製，也不取代現場指標與官方地圖。
+    實際導航請使用上方 Google Maps 青草湖地標。
+  </div>
+
+</ContentPage>

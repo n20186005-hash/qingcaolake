@@ -1,0 +1,54 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import SourceList from '../components/SourceList.astro';
+import { WATER_HOURS, LAKE } from '../data/facts';
+---
+<ContentPage
+  title="青草湖開放時間與門票｜湖區免費、水上活動另有時段"
+  h1="青草湖開放時間與門票"
+  description="青草湖公共湖區全日開放、免門票；水域遊憩活動另有營業時間，固定星期二休息。完整時段與注意事項一次看懂。"
+  path="/opening-hours/"
+  ogImage="view"
+  intro="重點先講：青草湖公共湖區免門票、全日開放；會有營業時間的是「水上活動」，不是整個湖區。兩者常被混為一談。"
+  crumbs={[{ label: '開放時間與門票', href: '/opening-hours/' }]}
+>
+  <div class="tldr">
+    <b>30 秒結論</b>
+    <ul>
+      <li>公共湖區與環湖步道：<strong>全日開放、免費</strong>。</li>
+      <li>水上活動（船、SUP）：有營業時段，<strong>固定星期二休息</strong>。</li>
+      <li>星期二仍可散步、拍照，只是不能坐船。</li>
+    </ul>
+  </div>
+
+  <h2>公共湖區</h2>
+  <div class="info-card">
+    <dl>
+      <dt>地址</dt><dd>{LAKE.address}</dd>
+      <dt>開放</dt><dd>{LAKE.openHours} <span class="badge badge--public">公共開放空間</span></dd>
+      <dt>門票</dt><dd>免費</dd>
+    </dl>
+  </div>
+
+  <h2>水域遊憩活動營業時間</h2>
+  <div class="info-card">
+    <dl>
+      <dt>4—10 月</dt><dd>{WATER_HOURS.summer}</dd>
+      <dt>11—3 月</dt><dd>{WATER_HOURS.winter}</dd>
+      <dt>公休</dt><dd>{WATER_HOURS.closed} <span class="badge badge--variable">可能變動</span></dd>
+    </dl>
+  </div>
+  <p style="margin-top:1em">
+    <span class="badge badge--weather">受天候影響</span>
+    即使在營業時段，水上活動仍可能因天候、水位、臨時活動或維護暫停。是否開放以水域遊憩中心現場公告為準。
+  </p>
+
+  <h2>容易搞混的地方</h2>
+  <ul>
+    <li>「青草湖星期二休息嗎？」——休息的是水上活動單位，湖區與步道照常開放。</li>
+    <li>營業時間分上、下午兩段，中午 12:00—13:00 通常暫停。</li>
+    <li>冬季（11—3 月）下午提早至 17:00 結束。</li>
+  </ul>
+
+  <SourceList keys={['hsinchu-tourism-lake', 'hsinchu-tourism-water']} />
+</ContentPage>

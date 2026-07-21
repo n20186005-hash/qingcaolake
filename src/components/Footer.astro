@@ -1,0 +1,72 @@
+---
+import { SITE, DISCLAIMER } from '../data/site';
+import Logo from './Logo.astro';
+
+const year = new Date().getFullYear();
+
+const cols = [
+  {
+    title: '規劃行程',
+    links: [
+      { label: '第一次來青草湖', href: '/guide/' },
+      { label: '環湖導覽地圖', href: '/map/' },
+      { label: '開放時間與門票', href: '/opening-hours/' },
+      { label: '半日遊路線', href: '/routes/half-day/' },
+    ],
+  },
+  {
+    title: '交通與活動',
+    links: [
+      { label: '停車場指南', href: '/parking/' },
+      { label: '交通方式', href: '/transport/' },
+      { label: '環湖步道', href: '/trail/' },
+      { label: '水上活動', href: '/water-activities/' },
+    ],
+  },
+  {
+    title: '關於本站',
+    links: [
+      { label: '關於我們', href: '/about/' },
+      { label: '資料來源', href: '/sources/' },
+      { label: '常見問題', href: '/#faq' },
+      { label: '資料勘誤', href: `mailto:${SITE.correctionsEmail}` },
+    ],
+  },
+];
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="brand" style="margin-bottom:14px">
+          <Logo color="#2c6b59" />
+          <span class="brand__text">
+            <b>青草湖旅遊指南</b>
+            <span>Qingcao Lake Visitor Guide</span>
+          </span>
+        </a>
+        <p style="color:#9fb0a6;max-width:36ch">
+          {SITE.description}。整理停車、交通、環湖步道、映月橋、於飛島、天鵝船、SUP 與半日遊路線。
+        </p>
+      </div>
+      {cols.map((col) => (
+        <div>
+          <h4>{col.title}</h4>
+          <ul>
+            {col.links.map((l) => (
+              <li><a href={l.href}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- 非官方聲明：依需求，只在頁尾顯示 -->
+    <p class="disclaimer">
+      {DISCLAIMER}
+    </p>
+    <p class="copyright">
+      © {year} QingcaoLake.com · 本站照片來自 Wikimedia Commons 姓名標示授權作品，各頁標註原作者。
+    </p>
+  </div>
+</footer>

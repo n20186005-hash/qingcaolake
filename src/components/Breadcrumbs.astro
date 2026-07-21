@@ -1,0 +1,31 @@
+---
+import { SITE } from '../data/site';
+
+interface Crumb { label: string; href?: string; }
+interface Props { items: Crumb[]; }
+const { items } = Astro.props;
+
+const all: Crumb[] = [{ label: '首頁', href: '/' }, ...items];
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: all.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.label,
+    ...(c.href ? { item: new URL(c.href, SITE.url).href } : {}),
+  })),
+};
+---
+<nav class="container crumbs" aria-label="麵包屑">
+  {all.map((c, i) => (
+    <>
+      {c.href && i < all.length - 1
+        ? <a href={c.href}>{c.label}</a>
+        : <span aria-current="page">{c.label}</span>}
+      {i < all.length - 1 && <span aria-hidden="true"> › </span>}
+    </>
+  ))}
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(jsonld)} is:inline />

@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PageGallery from '../components/PageGallery.astro';
+---
+<Base
+  title="找不到頁面｜青草湖旅遊指南"
+  description="找不到這個頁面，回首頁繼續規劃青草湖行程。"
+  path="/404/"
+  noindex={true}
+>
+  <section class="container narrow center" style="padding-block:80px">
+    <p class="eyebrow">404</p>
+    <h1>這條步道好像走岔了</h1>
+    <p style="color:var(--muted)">找不到你要的頁面。回首頁重新規劃青草湖行程，或看看下面的常用頁面。</p>
+    <p class="hero__cta" style="justify-content:center">
+      <a class="btn" href="/">回首頁</a>
+      <a class="btn btn--ghost" href="/map/">環湖地圖</a>
+      <a class="btn btn--ghost" href="/parking/">停車資訊</a>
+    </p>
+    <PageGallery
+      title="也可以從這些湖區景色重新出發"
+      images={['panorama2022', 'yingyueBridge', 'yufeiView']}
+    />
+  </section>
+</Base>

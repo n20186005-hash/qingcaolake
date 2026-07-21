@@ -1,0 +1,12 @@
+.pnpm-store/node_modules/
+dist/
+.env
+*.local
+.DS_Store
+*.log
+apps/web/src/routeTree.gen.ts
+releases/
+node_modules/
+.pnpm-store/
+.astro
+.wrangler/

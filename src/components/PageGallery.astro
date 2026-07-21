@@ -1,0 +1,32 @@
+---
+import Photo from './Photo.astro';
+import { IMAGES, type ImageKey } from '../data/images';
+
+interface Props {
+  images: ImageKey[];
+  title?: string;
+  intro?: string;
+}
+
+const {
+  images,
+  title = '青草湖現場實景',
+  intro,
+} = Astro.props;
+---
+<div class="page-gallery">
+  <h2>{title}</h2>
+  {intro && <p class="page-gallery__intro">{intro}</p>}
+  <div class="photo-gallery">
+    {images.map((imageName, index) => (
+      <Photo
+        name={imageName}
+        caption={IMAGES[imageName].alt}
+        widths={[480, 800, 1200, 1600, 2400]}
+        sizes={index === 0
+          ? '(max-width: 760px) 100vw, 760px'
+          : '(max-width: 640px) 100vw, 380px'}
+      />
+    ))}
+  </div>
+</div>

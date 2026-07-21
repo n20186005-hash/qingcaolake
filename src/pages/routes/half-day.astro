@@ -1,0 +1,59 @@
+---
+import ContentPage from '../../layouts/ContentPage.astro';
+import RouteCard from '../../components/RouteCard.astro';
+import Photo from '../../components/Photo.astro';
+import { ROUTES } from '../../data/routes';
+---
+<ContentPage
+  title="青草湖半日遊路線｜一小時、兩小時環湖與親子行程"
+  h1="青草湖遊玩路線：一小時、兩小時與半日遊"
+  description="青草湖半日遊路線規劃：一小時精華、兩小時環湖與半日親子行程，逐站說明時間、步行量與適合對象。"
+  path="/routes/half-day/"
+  ogImage="yingyueReflection"
+  intro="與其記住每個景點，不如依你有多少時間、和誰一起來，直接挑一條路線。以下三條路線可依現場狀況彈性調整。"
+  crumbs={[{ label: '遊玩路線', href: '/routes/half-day/' }]}
+>
+  <div class="grid grid--3">
+    {ROUTES.map((r) => <RouteCard route={r} />)}
+  </div>
+
+  <h2 id="one-hour">一小時精華路線</h2>
+  <p><span class="chip chip--lake">約 1 小時</span> <span class="chip">步行約 1.5 公里</span></p>
+  <p>適合第一次來、長者、情侶及時間有限者。</p>
+  <ol>
+    <li>從<strong>停車場</strong>出發，步行約 3 分鐘到<a href="/water-activities/">水域遊憩中心</a>。</li>
+    <li>沿湖岸走到<a href="/attractions/yingyue-bridge/"><strong>映月橋</strong></a>，這裡是拍倒影的招牌點。</li>
+    <li>續行到<a href="/attractions/yufei-island/"><strong>於飛島</strong></a>，湖中小島與涼亭適合小歇。</li>
+    <li>回程湖岸再拍幾張，返回停車場。</li>
+  </ol>
+
+  <Photo name="yingyueReflection" caption="映月橋與湖面倒影是一小時路線的重點畫面" />
+
+  <h2 id="two-hours">兩小時環湖路線</h2>
+  <p><span class="chip chip--lake">約 2 小時</span> <span class="chip">步行約 3 公里</span></p>
+  <p>適合想完整環湖、腳力正常的遊客。</p>
+  <ol>
+    <li><strong>停車場 → <a href="/attractions/yingyue-bridge/">映月橋</a> → <a href="/attractions/yufei-island/">於飛島</a></strong>，先走精華段。</li>
+    <li>沿<strong>湖岸步道</strong>續行至<a href="/attractions/fenghuang-bridge/"><strong>鳳凰橋</strong></a>，人少好取景。</li>
+    <li>延伸到<a href="/attractions/minghu-park/"><strong>明湖公園</strong></a>綠地稍作休息後返回。</li>
+  </ol>
+  <p style="color:var(--muted);font-size:.92rem">提醒：往鳳凰橋、明湖公園部分路段鄰近車道，帶孩子請牽好。</p>
+
+  <h2 id="family">半日親子路線</h2>
+  <p><span class="chip chip--lake">約 3—4 小時</span> <span class="chip">含休息與用餐</span></p>
+  <p>帶孩子、想坐船、想慢慢玩的家庭首選。</p>
+  <ol>
+    <li>先到<a href="/attractions/minghu-park/"><strong>明湖公園</strong></a>放電、野餐。</li>
+    <li><strong>環湖散步</strong>到水域中心，搭<strong>天鵝船或電動船</strong>（留意營業時間與天候）。</li>
+    <li>走訪<a href="/attractions/yufei-island/"><strong>於飛島</strong></a>後，到<strong>附近用餐</strong>結束半天。</li>
+  </ol>
+
+  <h2 id="half-day">半日遊：青草湖 + 靈隱寺 + 用餐</h2>
+  <p>想安排一個完整下午，可把青草湖與湖畔<a href="/attractions/lingyin-temple/"><strong>靈隱寺</strong></a>串起來，登高看湖景後再到附近吃飯。
+    喜歡水文化與親子景點的人，也能延伸到新竹水道取水口展示館一帶。</p>
+
+  <div class="callout">
+    水上活動可能因天候、水位、活動或維護暫停，把坐船排進行程前，建議先確認當日是否開放。
+  </div>
+
+</ContentPage>

@@ -1,0 +1,16 @@
+---
+interface Props { size?: number; color?: string; }
+const { size = 38, color = 'var(--lake)' } = Astro.props;
+---
+<!-- Logo 概念：映月橋弧線 + 湖面波紋 + 字母 Q -->
+<svg width={size} height={size} viewBox="0 0 48 48" fill="none"
+     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="青草湖旅遊指南" class="brand__mark">
+  <circle cx="24" cy="24" r="22" fill={color} />
+  <!-- 橋弧 -->
+  <path d="M9 24 Q24 9 39 24" stroke="#f6f3ea" stroke-width="2.4" fill="none" stroke-linecap="round" />
+  <!-- 橋墩倒影/Q 尾 -->
+  <path d="M30 30 L37 37" stroke="#c98a2b" stroke-width="3" stroke-linecap="round" />
+  <!-- 湖面波紋 -->
+  <path d="M12 30 Q18 27 24 30 T36 30" stroke="#eef4f0" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.85" />
+  <path d="M14 35 Q19 32.5 24 35 T34 35" stroke="#eef4f0" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.6" />
+</svg>

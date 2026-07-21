@@ -1,0 +1,249 @@
+---
+import Base from '../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import Logo from '../components/Logo.astro';
+import QuickFacts from '../components/QuickFacts.astro';
+import WeatherCard from '../components/WeatherCard.astro';
+import AttractionCard from '../components/AttractionCard.astro';
+import RouteCard from '../components/RouteCard.astro';
+import LakeMap from '../components/LakeMap.astro';
+import Faq from '../components/Faq.astro';
+import PageGallery from '../components/PageGallery.astro';
+import { IMAGES } from '../data/images';
+import { HOME_ATTRACTIONS } from '../data/places';
+import { ROUTES, INTENTS } from '../data/routes';
+import { WATER_PRICES } from '../data/facts';
+import { FAQ } from '../data/faq';
+import { GOOGLE_MAPS, SITE } from '../data/site';
+
+const heroImg = IMAGES.hero;
+
+// 首頁 6 張景點卡
+const homeAttractions = HOME_ATTRACTIONS;
+// TouristAttraction schema：把青草湖描述為文章實體，而非本站擁有的場所
+const attractionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristAttraction',
+  name: '青草湖',
+  alternateName: SITE.altNames,
+  description:
+    '新竹市東區的湖泊景點，設有環湖步道、映月橋、於飛島、鳳凰橋與水域遊憩活動，適合親子、情侶與長者的半日遊。',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: '新竹市東區',
+    addressRegion: '新竹市',
+    addressCountry: 'TW',
+    streetAddress: '明湖路 1075 巷 82 號',
+  },
+  isAccessibleForFree: true,
+  publicAccess: true,
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 24.7749348,
+    longitude: 120.9709015,
+  },
+  sameAs: [GOOGLE_MAPS.placeUrl],
+  touristType: ['家庭親子', '情侶', '長者', '攝影'],
+  image: new URL('/favicon.svg', SITE.url).href,
+};
+---
+<Base
+  title="青草湖旅遊指南｜停車、環湖步道、天鵝船與新竹半日遊"
+  description="整理新竹青草湖開放時間、停車收費、交通方式、環湖步道、映月橋、於飛島、天鵝船、SUP 及親子半日遊路線。"
+  path="/"
+  ogImage="hero"
+  jsonld={[attractionSchema]}
+>
+  <!-- 1. Hero -->
+  <section class="hero" style="padding:0">
+    <div class="hero__media">
+      <Picture
+        src={heroImg.src}
+        formats={['avif', 'webp']}
+        widths={[768, 1280, 1920]}
+        sizes="100vw"
+        alt={heroImg.alt}
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__credit">攝影：<a href={heroImg.source} rel="nofollow noopener" target="_blank">{heroImg.credit}</a>（{heroImg.license}）</div>
+    <div class="container hero__inner">
+      <div class="hero__box">
+        <p class="eyebrow">新竹 · 青草湖 Green Grass Lake</p>
+        <h1>新竹青草湖旅遊指南</h1>
+        <p class="lead">
+          整理青草湖停車、交通、環湖步道、映月橋、於飛島、天鵝船、SUP 與半日遊路線。
+          第一次來也能快速知道怎麼走、停哪裡、玩多久。
+        </p>
+        <div class="hero__cta">
+          <a class="btn" href="/map/">查看環湖地圖</a>
+          <a class="btn btn--ghost" href="/parking/">查詢停車資訊</a>
+          <a class="btn btn--ghost" href="/routes/half-day/">選擇遊玩路線</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 出發前快速資訊 -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">出發前 30 秒</p>
+        <h2>青草湖快速資訊</h2>
+        <p>青草湖，又稱 Qingcao Lake、Qing Cao Lake，官方英文旅遊資料常使用 Green Grass Lake。以下為出發前最常需要的資訊。</p>
+      </div>
+      <QuickFacts />
+    </div>
+  </section>
+
+  <!-- 3. 即時天氣 -->
+  <section class="section--alt" id="weather">
+    <div class="container">
+      <WeatherCard />
+    </div>
+  </section>
+
+  <!-- 4. 你今天想怎麼玩 -->
+  <section class="section--alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">先選方向</p>
+        <h2>你今天想怎麼玩？</h2>
+        <p>不必看完整篇攻略，先依需求選一個入口。</p>
+      </div>
+      <div class="intents">
+        {INTENTS.map((it) => (
+          <a class="intent" href={it.href}>
+            <b>{it.need}</b>
+            <span>推薦：{it.recommend}</span>
+            <div class="arrow">前往 ›</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 原創導覽地圖 -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">原創導覽</p>
+        <h2>青草湖導覽地圖</h2>
+        <p>自製的環湖示意地圖，標出停車場、水域中心、映月橋、於飛島、鳳凰橋、靈隱寺、明湖公園與三條推薦路線的相對位置。</p>
+      </div>
+      <LakeMap />
+      <p class="center mt-lg">
+        <a class="btn btn--ghost" href="/map/">看完整地圖與步行時間 ›</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. 三條主路線 -->
+  <section class="section--alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">按場景選路線</p>
+        <h2>三條推薦路線</h2>
+        <p>與其記住每個景點，不如依時間與同行者挑一條路線。</p>
+      </div>
+      <div class="grid grid--3">
+        {ROUTES.map((r) => <RouteCard route={r} />)}
+      </div>
+      <p class="center mt-lg"><a class="btn" href="/routes/half-day/">看完整路線說明 ›</a></p>
+    </div>
+  </section>
+
+  <!-- 7. 景點卡片 -->
+  <section id="attractions">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">湖區地標</p>
+        <h2>青草湖六大景點</h2>
+        <p>每個地標都標註建議停留時間、到下一站的距離，以及是否適合推車與長者。</p>
+      </div>
+      <div class="grid grid--3">
+        {homeAttractions.map((a) => <AttractionCard a={a} />)}
+      </div>
+      <PageGallery
+        title="更多青草湖實景"
+        intro="從湖面全景、於飛島到靈隱寺，先看看不同路段的實際環境，再決定想走哪一段。"
+        images={['yufeiView', 'panorama2022', 'lingyinMainHall']}
+      />
+    </div>
+  </section>
+
+  <!-- 8. 水上活動決策 -->
+  <section class="section--alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">先判斷再看價格</p>
+        <h2>水上活動怎麼選？</h2>
+        <p>與其只看價目表，先想清楚你想要什麼樣的遊湖體驗。</p>
+      </div>
+      <div class="decision">
+        <div class="decide">
+          <h3>想輕鬆遊湖</h3>
+          <p>不想出力、只想坐著看風景。</p>
+          <p class="pick">→ 選電動船</p>
+        </div>
+        <div class="decide">
+          <h3>想親子互動</h3>
+          <p>和孩子一起踩、一起划，增加參與感。</p>
+          <p class="pick">→ 選踩踏船 / 天鵝船</p>
+        </div>
+        <div class="decide">
+          <h3>想運動體驗</h3>
+          <p>具基本水性，想挑戰站上水面。</p>
+          <p class="pick">→ 選 SUP 立式划槳</p>
+        </div>
+      </div>
+
+      <div class="table-wrap mt-lg">
+        <table class="data">
+          <thead>
+            <tr><th>項目</th><th>全票</th><th>優待 / 說明</th></tr>
+          </thead>
+          <tbody>
+            {WATER_PRICES.map((p) => (
+              <tr>
+                <td>{p.name}</td>
+                <td>{p.full}</td>
+                <td>{p.discount ?? p.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>資訊可能調整，請在預約前再次確認。</strong>
+        本站不代收費用，也不處理預約及退款。水上活動另有營業時間，固定星期二休息。
+      </div>
+      <p><a class="btn btn--ghost" href="/water-activities/">看水上活動完整說明 ›</a></p>
+    </div>
+  </section>
+
+  <!-- 8. 常見問題 -->
+  <section id="faq">
+    <div class="container narrow">
+      <div class="section-head">
+        <p class="eyebrow">出發前先看</p>
+        <h2 style="margin-top:0">常見問題</h2>
+      </div>
+      <Faq items={FAQ} />
+    </div>
+  </section>
+
+  <!-- 提醒 -->
+  <section class="section--alt">
+    <div class="container narrow center">
+      <Logo size={44} />
+      <p style="max-width:52ch;margin:1em auto 0;color:var(--muted)">
+        湖區為公共開放空間。水上活動可能因天候、水位、活動或維護暫停，
+        出發前請查看經營單位最新公告。
+      </p>
+    </div>
+  </section>
+</Base>
